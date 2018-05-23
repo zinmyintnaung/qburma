@@ -10,6 +10,7 @@
                 <thead>
                     <th>Language Name</th>
                     <th>Translator</th>
+                    <th>Created By</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </thead>
@@ -19,6 +20,7 @@
                         <tr>
                             <td>{{ $language->language }}</td>
                             <td>{{ $language->translator }}</td>
+                            <td>{{ $language->userCreated()->name }}</td>
                             <td>
                                 <a href="{{ route('language.edit', ['id'=>$language->id]) }}" class="btn btn-s btn-info">
                                     Edit

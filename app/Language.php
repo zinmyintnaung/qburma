@@ -2,14 +2,13 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-class Language extends Model
+class Language extends BaseModel
 {
-    use SoftDeletes;
     protected $fillable = [
         'language', 'description', 'translator'
     ];
-    protected $dates = ['deleted_at'];
+    
+    public function suras(){
+        return $this->hasMany('App\Sura');
+    }
 }
