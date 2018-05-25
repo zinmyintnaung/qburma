@@ -23,6 +23,7 @@
                             <td>{{ $sura->sura_number }}</td>
                             <td>{{ $sura->sura_title_text }}</td>
                             <td>{{ $sura->userCreated()->name }}</td>
+                            
                             <td>
                                 -
                             </td>

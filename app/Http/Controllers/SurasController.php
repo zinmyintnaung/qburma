@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Session;
 use Illuminate\Http\Request;
 use App\Sura;
+use App\Language;
 
 class SurasController extends Controller
 {
@@ -14,6 +15,7 @@ class SurasController extends Controller
      */
     public function index()
     {
+        //dd(Sura::all());
         return view('admin.suras.index')->with('suras', Sura::all());
     }
 
@@ -24,7 +26,12 @@ class SurasController extends Controller
      */
     public function create()
     {
-        return view('admin.suras.create');
+        $languages = Language::all();
+        if($languages->count() == 0){
+            Session::flash('info', 'You must have language before creating sura');
+            return redirect()->back();
+        }
+        return view('admin.suras.create')->with('languages', $languages);
     }
 
     /**
@@ -35,7 +42,20 @@ class SurasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'language_id'=>'required',
+            'sura_number'=>'required',
+            'sura_title_text'=>'required',
+        ]);
+
+        $sura = Sura::create([
+            'language_id'=>$request->language_id,
+            'sura_number'=>$request->sura_number,
+            'sura_title_text'=>$request->sura_title_text,
+            'sura_note'=>$request->sura_note,
+        ]);
+        Session::flash('success', 'Sura created successfully');
+        return redirect()->back();
     }
 
     /**
