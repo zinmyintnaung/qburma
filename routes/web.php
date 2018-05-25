@@ -65,5 +65,15 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
         'uses' => 'SurasController@index',
         'as'=>'suras'
     ]);
+
+    Route::get('/sura/create', [
+        'uses' => 'SurasController@create',
+        'as'=>'sura.create'
+    ]);
+
+    Route::post('/sura/store', [
+        'uses' => 'SurasController@store',
+        'as'=>'sura.store'
+    ]);
     
 });

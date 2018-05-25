@@ -82,11 +82,19 @@
                             <li class="list-group-item">
                                 <a href="{{ route('home') }}">Home</a>
                             </li>
+                            <!-- Language Module -->
                             <li class="list-group-item">
                                 <a href="{{ route('language.create') }}">Add Language</a>
                             </li>
                             <li class="list-group-item">
                                 <a href="{{ route('languages') }}">Languages</a>
+                            </li>
+                            <!-- Sura Module -->
+                            <li class="list-group-item">
+                                <a href="{{ route('sura.create') }}">Add Sura</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{ route('suras') }}">Suras</a>
                             </li>
                             
                         </ul>

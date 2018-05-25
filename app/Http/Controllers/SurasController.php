@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Sura;
 
 class SurasController extends Controller
 {
@@ -13,7 +14,7 @@ class SurasController extends Controller
      */
     public function index()
     {
-        return view('admin.suras.index')->with('suras', Suras::all());
+        return view('admin.suras.index')->with('suras', Sura::all());
     }
 
     /**

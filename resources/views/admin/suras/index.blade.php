@@ -8,6 +8,7 @@
         <div class="panel-body">
             <table class="table table-hover">
                 <thead>
+                    <th>Language</th>
                     <th>Sura Number</th>
                     <th>Sura Title</th>
                     <th>Created By</th>
@@ -18,6 +19,7 @@
                     @if($suras->count()>0)
                         @foreach($suras as $sura)
                         <tr>
+                            <td>{{ $sura->language_id }}</td>
                             <td>{{ $sura->sura_number }}</td>
                             <td>{{ $sura->sura_title_text }}</td>
                             <td>{{ $sura->userCreated()->name }}</td>
@@ -31,7 +33,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <th colspan="5" class="text-center">No Sura</th>
+                            <th colspan="6" class="text-center">No Sura</th>
                         </tr>
                     @endif
                 </tbody>
