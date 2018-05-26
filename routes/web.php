@@ -82,5 +82,15 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
         'uses' => 'SuraTextsController@index',
         'as'=>'suratexts'
     ]);
+
+    Route::get('/suratext/create', [
+        'uses' => 'SuraTextsController@create',
+        'as'=>'suratext.create'
+    ]);
+
+    Route::post('/suratext/store', [
+        'uses' => 'SuraTextsController@store',
+        'as'=>'suratext.store'
+    ]);
     
 });

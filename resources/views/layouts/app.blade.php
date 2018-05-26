@@ -96,7 +96,10 @@
                             <li class="list-group-item">
                                 <a href="{{ route('suras') }}">Suras</a>
                             </li>
-
+                            <!-- Sura Text Module -->
+                            <li class="list-group-item">
+                                <a href="{{ route('suratext.create') }}">Add Sura Text</a>
+                            </li>
                             <li class="list-group-item">
                                 <a href="{{ route('suratexts') }}">Sura Text</a>
                             </li>

@@ -5,6 +5,7 @@ use Session;
 use Illuminate\Http\Request;
 use App\Sura;
 use App\SuraText;
+use App\Language;
 
 class SuraTextsController extends Controller
 {
@@ -25,7 +26,13 @@ class SuraTextsController extends Controller
      */
     public function create()
     {
-        //
+        $suras = Sura::all();
+        $languages = Language::all();//Purpose is to filter sura based on selected language
+        if($suras->count() == 0){
+            Session::flash('info', 'You must have sura before creating sura text');
+            return redirect()->back();
+        }
+        return view('admin.suratexts.create')->with('suras', $suras)->with('languages', $languages);
     }
 
     /**
@@ -36,7 +43,20 @@ class SuraTextsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'sura_id'=>'required',
+            'verse_id'=>'required',
+            'ayah'=>'required',
+        ]);
+
+        $sura = SuraText::create([
+            'sura_id'=>$request->sura_id,
+            'verse_id'=>$request->verse_id,
+            'ayah'=>$request->ayah,
+            
+        ]);
+        Session::flash('success', 'Sura Text created successfully');
+        return redirect()->back();
     }
 
     /**
