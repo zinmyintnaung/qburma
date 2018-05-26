@@ -76,4 +76,11 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
         'as'=>'sura.store'
     ]);
     
+    //Delete edit to add here
+
+    Route::get('/suratexts', [
+        'uses' => 'SuraTextsController@index',
+        'as'=>'suratexts'
+    ]);
+    
 });

@@ -96,6 +96,10 @@
                             <li class="list-group-item">
                                 <a href="{{ route('suras') }}">Suras</a>
                             </li>
+
+                            <li class="list-group-item">
+                                <a href="{{ route('suratexts') }}">Sura Text</a>
+                            </li>
                             
                         </ul>
                     </div>
