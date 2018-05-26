@@ -11,4 +11,6 @@ class Language extends BaseModel
     public function suras(){
         return $this->hasMany('App\Sura');
     }
+
+    
 }

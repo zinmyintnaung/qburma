@@ -13,4 +13,8 @@ class Sura extends BaseModel
         return $this->belongsTo('App\Language');
     }
 
+    public function suratexts(){
+        return $this->hasMany('App\SuraText');
+    }
+
 }
