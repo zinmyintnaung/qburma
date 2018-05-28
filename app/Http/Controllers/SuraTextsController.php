@@ -78,7 +78,8 @@ class SuraTextsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $suratext = SuraText::find($id);
+        return view('admin.suratexts.edit')->with('suratext', $suratext)->with('suras', Sura::all())->with('languages', Language::all());
     }
 
     /**
@@ -90,7 +91,22 @@ class SuraTextsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'sura_id'=>'required',
+            'verse_id'=>'required',
+            'ayah'=>'required',
+        ]);
+        
+        $suratext = SuraText::find($id);
+        
+        $suratext->sura_id = $request->sura_id;
+        $suratext->verse_id = $request->verse_id;
+        $suratext->ayah = $request->ayah;
+        $suratext->save();
+        
+        Session::flash('success', 'Successfully updated the sura text');
+        
+        return redirect()->route('suratexts');
     }
 
     /**
@@ -101,6 +117,26 @@ class SuraTextsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $suratext = SuraText::find($id);
+        $suratext->delete();
+        Session::flash('success', 'The sura text was just trashed.');
+        return redirect()->back();
+    }
+    public function kill($id){
+        //$post = Post::find($id); -> find by ID will not work here coz the post we are looking is already trashed by Laravel eloquent
+        $suratext = SuraText::withTrashed()->where('id', $id)->first();
+        $suratext->forceDelete();
+        Session::flash('success', 'The sura text deleted permantly');
+        return redirect()->back();
+    }
+    public function trashed(){
+        $suratexts = SuraText::onlyTrashed()->get();
+        return view('admin.suratexts.trashed')->with('suratexts', $suratexts);
+    }
+    public function restore($id){
+        $suratext = SuraText::withTrashed()->where('id', $id)->first();
+        $suratext->restore();
+        Session::flash('success', 'Sura text restored successfully');
+        return redirect()->route('suratexts');
     }
 }

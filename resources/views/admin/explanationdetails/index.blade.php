@@ -3,34 +3,32 @@
 @section('content')
     <div class="panel panel-default">
         <div class="panel-heading">
-            Suras
+            Explanation Detail
         </div>
         <div class="panel-body">
             <table class="table table-hover">
                 <thead>
-                    <th>Language</th>
-                    <th>Sura Number</th>
-                    <th>Sura Title</th>
+                    <th>Sura Text ID</th>
+                    <th>Explanation Detail</th>
                     <th>Created By</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </thead>
                 <tbody>
-                    @if($suras->count()>0)
-                        @foreach($suras as $sura)
+                    @if($explanationdetails->count()>0)
+                        @foreach($explanationdetails as $explanationdetail)
                         <tr>
-                            <td>{{ $sura->language_id }}</td>
-                            <td>{{ $sura->sura_number }}</td>
-                            <td>{{ $sura->sura_title_text }}</td>
-                            <td>{{ $sura->userCreated()->name }}</td>
+                            <td>{{ $explanationdetail->sura_text_id }}</td>
+                            <td>{{ $explanationdetail->getExcerpt($explanationdetail->explanation_detail) }}</td>
+                            <td>{{ $explanationdetail->userCreated()->name }}</td>
                             
                             <td>
-                                <a href="{{ route('sura.edit', ['id'=>$sura->id]) }}" class="btn btn-s btn-info">
+                                <a href="{{ route('explanationdetail.edit', ['id'=>$explanationdetail->id]) }}" class="btn btn-s btn-info">
                                     Edit
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('sura.delete', ['id'=>$sura->id]) }}" class="btn btn-s btn-danger">
+                                <a href="{{ route('explanationdetail.delete', ['id'=>$explanationdetail->id]) }}" class="btn btn-s btn-danger">
                                     Trash
                                 </a>
                             </td>
@@ -38,7 +36,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <th colspan="6" class="text-center">No Sura</th>
+                            <th colspan="6" class="text-center">No Explanation Detail</th>
                         </tr>
                     @endif
                 </tbody>

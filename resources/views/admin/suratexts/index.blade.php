@@ -27,10 +27,14 @@
                             <td>{{ $suratext->userCreated()->name }}</td>
                             
                             <td>
-                                -
+                                <a href="{{ route('suratext.edit', ['id'=>$suratext->id]) }}" class="btn btn-s btn-info">
+                                    Edit
+                                </a>
                             </td>
                             <td>
-                                -
+                                <a href="{{ route('suratext.delete', ['id'=>$suratext->id]) }}" class="btn btn-s btn-danger">
+                                    Trash
+                                </a>
                             </td>
                         </tr>
                         @endforeach

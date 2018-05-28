@@ -61,6 +61,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
         'as'=>'language.kill'
     ]);
 
+    //Suras start
     Route::get('/suras', [
         'uses' => 'SurasController@index',
         'as'=>'suras'
@@ -74,10 +75,33 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
     Route::post('/sura/store', [
         'uses' => 'SurasController@store',
         'as'=>'sura.store'
-    ]);
+    ]); 
     
-    //Delete edit to add here
+    Route::get('/sura/edit/{id}', [
+        'uses' => 'SurasController@edit',
+        'as'=>'sura.edit'
+    ]);
 
+    Route::post('/sura/update/{id}', [
+        'uses' => 'SurasController@update',
+        'as'=>'sura.update'
+    ]);
+
+    Route::get('/suras/trashed', [
+        'uses' => 'SurasController@trashed',
+        'as'=>'suras.trashed'
+    ]);
+
+    Route::get('/sura/delete/{id}', [
+        'uses' => 'SurasController@destroy',
+        'as'=>'sura.delete'
+    ]);
+
+    Route::get('/sura/kill/{id}', [
+        'uses' => 'SurasController@kill',
+        'as'=>'sura.kill'
+    ]); //Suras end
+    
     Route::get('/suratexts', [
         'uses' => 'SuraTextsController@index',
         'as'=>'suratexts'
@@ -92,5 +116,69 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
         'uses' => 'SuraTextsController@store',
         'as'=>'suratext.store'
     ]);
+    Route::get('/suratext/edit/{id}', [
+        'uses' => 'SuraTextsController@edit',
+        'as'=>'suratext.edit'
+    ]);
+
+    Route::post('/suratext/update/{id}', [
+        'uses' => 'SuraTextsController@update',
+        'as'=>'suratext.update'
+    ]);
+
+    Route::get('/suratexts/trashed', [
+        'uses' => 'SuraTextsController@trashed',
+        'as'=>'suratexts.trashed'
+    ]);
+
+    Route::get('/suratext/delete/{id}', [
+        'uses' => 'SuraTextsController@destroy',
+        'as'=>'suratext.delete'
+    ]);
+
+    Route::get('/suratext/kill/{id}', [
+        'uses' => 'SuraTextsController@kill',
+        'as'=>'suratext.kill'
+    ]); //Sura Text ended
     
+    Route::get('/explanationdetails', [
+        'uses' => 'ExplanationDetailsController@index',
+        'as'=>'explanationdetails'
+    ]);
+    
+    Route::get('/explanationdetail/create', [
+        'uses' => 'ExplanationDetailsController@create',
+        'as'=>'explanationdetail.create'
+    ]);
+
+    Route::post('/explanationdetail/store', [
+        'uses' => 'ExplanationDetailsController@store',
+        'as'=>'explanationdetail.store'
+    ]);
+    Route::get('/explanationdetail/edit/{id}', [
+        'uses' => 'ExplanationDetailsController@edit',
+        'as'=>'explanationdetail.edit'
+    ]);
+
+    Route::post('/explanationdetail/update/{id}', [
+        'uses' => 'ExplanationDetailsController@update',
+        'as'=>'explanationdetail.update'
+    ]);
+
+    Route::get('/explanationdetails/trashed', [
+        'uses' => 'ExplanationDetailsController@trashed',
+        'as'=>'explanationdetails.trashed'
+    ]);
+
+    Route::get('/explanationdetail/delete/{id}', [
+        'uses' => 'ExplanationDetailsController@destroy',
+        'as'=>'explanationdetail.delete'
+    ]);
+
+    Route::get('/explanationdetail/kill/{id}', [
+        'uses' => 'ExplanationDetailsController@kill',
+        'as'=>'explanationdetail.kill'
+    ]);
+    //Explain Detail delete edit to add here
+
 });

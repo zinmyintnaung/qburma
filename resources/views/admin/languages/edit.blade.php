@@ -23,7 +23,7 @@
 
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea name="description" id="description" cols="5" rows="5" value="{{ $language->description }}" class="form-control"></textarea>
+                    <textarea name="description" id="description" cols="5" rows="5" class="form-control">{{ $language->description }}</textarea>
                 </div>
                 
                 <div class="form-group">

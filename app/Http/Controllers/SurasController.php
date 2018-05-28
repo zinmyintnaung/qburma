@@ -77,7 +77,8 @@ class SurasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sura = Sura::find($id);
+        return view('admin.suras.edit')->with('sura', $sura)->with('languages', Language::all());
     }
 
     /**
@@ -89,7 +90,23 @@ class SurasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'language_id'=>'required',
+            'sura_number'=>'required',
+            'sura_title_text'=>'required',
+        ]);
+        
+        $sura = Sura::find($id);
+        
+        $sura->language_id = $request->language_id;
+        $sura->sura_number = $request->sura_number;
+        $sura->sura_title_text = $request->sura_title_text;
+        $sura->sura_note = $request->sura_note;
+        $sura->save();
+        
+        Session::flash('success', 'Successfully updated the sura');
+        
+        return redirect()->route('suras');
     }
 
     /**
@@ -100,6 +117,26 @@ class SurasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sura = Sura::find($id);
+        $sura->delete();
+        Session::flash('success', 'The sura was just trashed.');
+        return redirect()->back();
+    }
+    public function kill($id){
+        //$post = Post::find($id); -> find by ID will not work here coz the post we are looking is already trashed by Laravel eloquent
+        $sura = Sura::withTrashed()->where('id', $id)->first();
+        $sura->forceDelete();
+        Session::flash('success', 'The sura deleted permantly');
+        return redirect()->back();
+    }
+    public function trashed(){
+        $suras = Sura::onlyTrashed()->get();
+        return view('admin.suras.trashed')->with('suras', $suras);
+    }
+    public function restore($id){
+        $sura = Sura::withTrashed()->where('id', $id)->first();
+        $sura->restore();
+        Session::flash('success', 'Sura restored successfully');
+        return redirect()->route('suras');
     }
 }

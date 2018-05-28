@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Q-burma') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -30,7 +30,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Q-burma') }}
                     </a>
                 </div>
 
@@ -72,7 +72,6 @@
             </div>
         </nav>
 
-        
         <div class="container">
             <div class="row">
 
@@ -82,28 +81,33 @@
                             <li class="list-group-item">
                                 <a href="{{ route('home') }}">Home</a>
                             </li>
-                            <!-- Language Module -->
-                            <li class="list-group-item">
-                                <a href="{{ route('language.create') }}">Add Language</a>
-                            </li>
                             <li class="list-group-item">
                                 <a href="{{ route('languages') }}">Languages</a>
-                            </li>
-                            <!-- Sura Module -->
-                            <li class="list-group-item">
-                                <a href="{{ route('sura.create') }}">Add Sura</a>
                             </li>
                             <li class="list-group-item">
                                 <a href="{{ route('suras') }}">Suras</a>
                             </li>
-                            <!-- Sura Text Module -->
+                            <li class="list-group-item">
+                                <a href="{{ route('suratexts') }}">Sura Text</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{ route('explanationdetails') }}">Explanation Detail</a>
+                            </li>
+                        </ul>
+
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="{{ route('language.create') }}">Add Language</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{ route('sura.create') }}">Add Sura</a>
+                            </li>
                             <li class="list-group-item">
                                 <a href="{{ route('suratext.create') }}">Add Sura Text</a>
                             </li>
                             <li class="list-group-item">
-                                <a href="{{ route('suratexts') }}">Sura Text</a>
+                                <a href="{{ route('explanationdetail.create') }}">Add Explanation Detail</a>
                             </li>
-                            
                         </ul>
                     </div>
                 @endif
@@ -113,7 +117,6 @@
                 </div>
             </div>
         </div>
-        
     </div>
 
     <!-- Scripts -->
